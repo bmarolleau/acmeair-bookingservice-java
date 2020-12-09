@@ -24,9 +24,17 @@ spec:
         imagePullPolicy: Always
         env:
         - name: USERNAME
-          value: admin
+          value: acmeair
         - name: PASSWORD
           value: password
+        - name: MONGODB_ADMIN_PASSWORD
+          value: password
+        - name: MONGODB_USER
+          value: acmeair
+        - name: MONGODB_PASSWORD
+          value: password
+        - name: MONGODB_DATABASE
+          value: acmeair_bookingdb  
         - name: MONGO_HOST
           value: acmeair-booking-db
         - name: ACMEAIR_STACKAA_AUTH_URL
@@ -100,7 +108,7 @@ spec:
         - name: acmeair-booking-db-2
           emptyDir: {}
       containers:
-      - image: mongo
+      - image: docker-registry.default.svc:5000/openshift/mongodb
         name: acmeair-booking-db
         ports:
         - containerPort: 27017
